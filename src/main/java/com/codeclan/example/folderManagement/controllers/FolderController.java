@@ -1,6 +1,7 @@
 package com.codeclan.example.folderManagement.controllers;
 
 import com.codeclan.example.folderManagement.models.File;
+import com.codeclan.example.folderManagement.models.Folder;
 import com.codeclan.example.folderManagement.repositories.FileRepository;
 import com.codeclan.example.folderManagement.repositories.FolderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +17,19 @@ public class FolderController {
     @Autowired
     FolderRepository folderRepository;
 
-    @GetMapping(value = "/fol")
-    public ResponseEntity<List<File>> getAllFiles(){
-        return new ResponseEntity<>(fileRepository.findAll(), HttpStatus.OK);
+    @GetMapping(value = "/folders")
+    public ResponseEntity<List<Folder>> getAllFolders(){
+        return new ResponseEntity<>(folderRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/files/{id}")
-    public ResponseEntity getFile(@PathVariable Long id){
-        return new ResponseEntity(fileRepository.findById(id), HttpStatus.OK);
+    @GetMapping(value = "/folders/{id}")
+    public ResponseEntity getFolder(@PathVariable Long id){
+        return new ResponseEntity(folderRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/files")
-    public ResponseEntity<File> postFile(@RequestBody File file){
-        fileRepository.save(file);
-        return new ResponseEntity<>(file, HttpStatus.CREATED);
+    @PostMapping(value = "/folders")
+    public ResponseEntity<Folder> postFile(@RequestBody Folder folder){
+        folderRepository.save(folder);
+        return new ResponseEntity<>(folder, HttpStatus.CREATED);
     }
 }
